@@ -31,7 +31,7 @@ interpolate_apps() {
     
     local script_path="$app_path/$name.sh"
     source "$script_path"
-    _cache_value "${name}_icon" get_icon "$timeout"
+    printf "%s\n" "$(_cache_value "${name}_icon" get_icon "$timeout")"
   done
 }
 
@@ -41,8 +41,8 @@ main() {
   local size=$(get_tmux_option "@running-app-status-size" "1")
   local app_icons="$(interpolate_apps "$timeout" "$@")"
   local time_offset="$(date '+%s')"
-  local text="$(scrolling_text "$app_icons" "$size" "$(( time_offset / rotation_interval ))")"
-  printf "%s" "$text"
+
+  scrolling_lines "$app_icons" "$size" "$(( time_offset / rotation_interval ))"
 }
 
 main "$@"

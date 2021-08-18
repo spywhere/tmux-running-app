@@ -18,23 +18,23 @@ get_tmux_option() {
   fi
 }
 
-scrolling_text() {
+scrolling_lines() {
   local text="$1"
   local size="$2"
   local offset="$3"
-  local text_length
+  local total_line
   if test $# -ge 4; then
-    text_length="$4"
+    total_line="$4"
   else
-    text_length=$(printf "%s" "$text" | wc -m)
+    total_line=$(( $(printf "%s" "$text" | wc -l) + 1 ))
   fi
   local index
   local padded_text
-  if test "$text_length" -gt "$size"; then
-    index=$(( offset % text_length ))
-    padded_text="$text$text"
-    printf "%s" "$padded_text" | cut -c"$(( index + 1 ))-$(( index + size ))"
+  if test "$total_line" -gt "$size"; then
+    index=$(( (offset % total_line) + 1 ))
+    padded_text="$(printf "%s\n%s" "$text" "$text")"
+    printf "%s" "$padded_text" | awk "{ORS=\"\"}NR>=$index&&NR<$(( index + size ))"
   else
-    printf "%s" "$text"
+    printf "%s" "$text" | awk '{ORS=""}{print $0}'
   fi
 }
