@@ -61,6 +61,9 @@ optimize_apps() {
 update_tmux_option() {
   local option="$1"
   local apps="$2"
+  if test -z "$apps"; then
+    return 0
+  fi
   local option_value=$(get_tmux_option "$option")
   local value="#($CURRENT_DIR/scripts/app.sh $apps)"
   option_value=${option_value//${status_key}/${value}}
@@ -73,10 +76,10 @@ main() {
   local right_status_format=$(get_tmux_option "@running-app-status-right-format" "$status_format")
 
   if test -n "$left_status_format"; then
-    update_tmux_option "status-left" "$(optimize_apps "$right_status_format")"
+    update_tmux_option "status-left" "$(optimize_apps "$left_status_format")"
   fi
   if test -n "$right_status_format"; then
-    update_tmux_option "status-right" "$(optimize_apps "$left_status_format")"
+    update_tmux_option "status-right" "$(optimize_apps "$right_status_format")"
   fi
 }
 
