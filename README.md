@@ -16,7 +16,7 @@ running applications
 
 Please see Components section below in order to add applications to status bar.
 
-Example applications: `{docker}{mpd}`
+Example status setup: `{docker}{mpd}`
 
 - `@running-app-status-format`  
 Description: An interpolated string with components to show for `#{running_app}`
@@ -44,7 +44,7 @@ Values: number
 Description: A number of seconds to refresh each of the application icon  
 Default: `5`  
 Values: number
-- `@running-app-rotation-interval`
+- `@running-app-rotation-interval`  
 Description: A number of seconds to rotate between application icons  
 Default: `5`  
 Values: number
@@ -106,7 +106,7 @@ Values: string
 
 #### Detection Note
 
-Each of the following data will be converted into lowercase, `_/| ` will be
+Each of the following data will be converted into lowercase, ` _/|` will be
 replaced by `-` (dash) and anything but alphanumeric or dash will be truncated
 
 - Platform: Through `uname -s`
