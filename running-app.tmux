@@ -61,12 +61,13 @@ optimize_apps() {
 update_tmux_option() {
   local option="$1"
   local apps="$2"
-  if test -z "$apps"; then
-    return 0
+
+  local option_value=""
+  if test -n "$apps"; then
+    option_value="$(get_tmux_option "$option")"
+    local value="#($CURRENT_DIR/scripts/app.sh $apps)"
+    option_value=${option_value//${status_key}/${value}}
   fi
-  local option_value=$(get_tmux_option "$option")
-  local value="#($CURRENT_DIR/scripts/app.sh $apps)"
-  option_value=${option_value//${status_key}/${value}}
   set_tmux_option "$option" "$option_value"
 }
 
