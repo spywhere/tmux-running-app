@@ -13,7 +13,7 @@ get_icon() {
   if test $? -eq 0; then
     printf "$PODMAN_ICON"
   fi
-  if test -n "$PODMAN_STARTING_ICON" && (echo "$podman_info" | grep -q "refused"); then
+  if test -n "$PODMAN_STARTING_ICON" && (echo "$podman_info" | grep -q "reset by peer"); then
     printf "$PODMAN_STARTING_ICON"
   fi
 }
