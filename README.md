@@ -6,6 +6,7 @@ Showing currently running applications in tmux status bar
 
 - `docker`
 - `mpd` ([Music Player Daemon](https://www.musicpd.org)) through `nc` (netcat)
+- `podman`
 
 ## Configurations
 
@@ -81,10 +82,22 @@ Description: A port number of MPD server
 Default: `6600`  
 Values: number
 
+#### Podman
+
+- `@running-app-podman-icon`  
+Description: An icon to show when Podman is running  
+Default: `P`  
+Values: string
+- `@running-app-podman-icon-starting`  
+Description: An icon to show when Podman is starting  
+Default: `p`  
+Values: string
+
 ### Components
 
 - `{docker}` Docker
 - `{mpd}` MPD
+- `{podman}` Podman
 
 You can disable the component based on the platform or architecture by simply
 using the following configurations. Please see Detection Note below for platform
