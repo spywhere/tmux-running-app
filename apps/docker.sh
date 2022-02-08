@@ -11,7 +11,6 @@ get_icon() {
 
   docker_info=$(docker info 2>&1)
   if test $? -eq 0; then
-    docker_start=""
     printf "$DOCKER_ICON"
   fi
   if test -n "$DOCKER_STARTING_ICON" && (echo "$docker_info" | grep -q "refused"); then

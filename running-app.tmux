@@ -16,6 +16,7 @@ architecture="$(normalize_text "$(uname -m)")"
 apps=(
   "docker"
   "mpd"
+  "podman"
 )
 
 optimize_apps() {
