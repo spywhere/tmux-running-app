@@ -26,7 +26,7 @@ scrolling_lines() {
   if test $# -ge 4; then
     total_line="$4"
   else
-    total_line=$(( $(printf "%s" "$text" | wc -l) + 1 ))
+    total_line=$(( $(printf "%s" "$text" | grep -c '^') ))
   fi
   local index
   local padded_text

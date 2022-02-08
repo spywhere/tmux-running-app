@@ -28,10 +28,13 @@ interpolate_apps() {
   shift
   for name in "$@"; do
     local key="{$name}"
-    
+
     local script_path="$app_path/$name.sh"
     source "$script_path"
-    printf "%s\n" "$(_cache_value "${name}_icon" get_icon "$timeout")"
+    local icon="$(_cache_value "${name}_icon" get_icon "$timeout")"
+    if test -n "$icon"; then
+      printf "%s\n" "$icon"
+    fi
   done
 }
 
